@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Générateur d'Attestation de Déplacement Dérogatoire</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <div id="page-container">
+            <h1>ATTESTATION DE DEPLACEMENT DEROGATOIRE</h1>
+            <p id="description">
+                Ce formulaire a pour but de générer une attestation de déplacement 
+                dérogatoire similaire à celle que l'on peut retrouver sur le site
+                du gouvernement mais de façon totalement transparente et hors ligne
+            </p>
+            <div class="container">
+                <form id="attestation-form">
+                    <label for="name">Prénom</label>
+                    <input v-model="name" type="text" name="name" placeholder="Jean" lazy>
+
+                    <label for="lastname">Nom</label>
+                    <input v-model="lastname" type="text" name="lastname" placeholder="Dupont" lazy>
+
+                    <label for="birthdate">Date de Naissance</label>
+                    <input v-model="birthdate" type="date" name="birthdate" value="2020-01-01" lazy>
+
+                    <label for="birthplace">Lieu de Naissance</label>
+                    <input v-model="birthplace" type="text" name="birthplace" placeholder="Lyon" lazy>
+
+                    <label for="address">Adresse</label>
+                    <input v-model="address" type="text" name="address" placeholder="36 quai des Orfèvres" lazy>
+
+                    <label for="city">Ville</label>
+                    <input v-model="city" type="text" name="city" placeholder="Paris" lazy>
+
+                    <label for="zipcode">Code Postal</label>
+                    <input v-model="zipcode" type="text" name="zipcode" placeholder="75001" pattern="^[0-9]{5}$">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
