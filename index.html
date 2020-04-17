@@ -3,6 +3,7 @@
     <head>
         <title>Générateur d'Attestation de Déplacement Dérogatoire</title>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="index.css">
         <meta charset="UTF-8">
     </head>
@@ -16,26 +17,41 @@
             </p>
             <div class="container">
                 <form id="attestation-form">
-                    <label for="name">Prénom</label>
-                    <input v-model="name" type="text" name="name" placeholder="Jean" lazy>
+                    <div class="form-group">
+                        <label for="name">Prénom</label>
+                        <input class="form-control form-control-lg is-valid" v-model="name" type="text" name="name" placeholder="Jean" lazy>
+                    </div>
 
-                    <label for="lastname">Nom</label>
-                    <input v-model="lastname" type="text" name="lastname" placeholder="Dupont" lazy>
+                    <div class="form-group">
+                        <label for="lastname">Nom</label>
+                        <input class="form-control form-control-lg" v-model="lastname" type="text" name="lastname" placeholder="Dupont" lazy>
+                    </div>
 
-                    <label for="birthdate">Date de Naissance</label>
-                    <input v-model="birthdate" type="date" name="birthdate" value="2020-01-01" lazy>
+                    <div class="form-group">
+                        <label for="birthdate">Date de Naissance</label>
+                        <input class="form-control form-control-lg" v-model="birthdate" type="date" name="birthdate" value="2020-01-01" lazy>
+                    </div>
 
-                    <label for="birthplace">Lieu de Naissance</label>
-                    <input v-model="birthplace" type="text" name="birthplace" placeholder="Lyon" lazy>
+                    <div class="form-group">
+                        <label for="birthplace">Lieu de Naissance</label>
+                        <input class="form-control form-control-lg" v-model="birthplace" type="text" name="birthplace" placeholder="Lyon" lazy>
+                    </div>
 
-                    <label for="address">Adresse</label>
-                    <input v-model="address" type="text" name="address" placeholder="36 quai des Orfèvres" lazy>
+                    <div class="form-group">
+                        <label for="address">Adresse</label>
+                        <input class="form-control form-control-lg" v-model="address" type="text" name="address" placeholder="36 quai des Orfèvres" lazy>
+                    </div>
 
-                    <label for="city">Ville</label>
-                    <input v-model="city" type="text" name="city" placeholder="Paris" lazy>
+                    <div class="form-group">
+                        <label for="city">Ville</label>
+                        <input class="form-control form-control-lg" v-model="city" type="text" name="city" placeholder="Paris" lazy>
+                    </div>
 
-                    <label for="zipcode">Code Postal</label>
-                    <input v-model="zipcode" type="text" name="zipcode" placeholder="75001" pattern="^[0-9]{5}$">
+                    <div class="form-group">
+                        <label for="zipcode">Code Postal</label>
+                        <input class="form-control form-control-lg" v-model="zipcode" type="text" name="zipcode" placeholder="75001" pattern="^[0-9]{5}$">
+                    </div>
+
                 </form>
             </div>
         </div>
