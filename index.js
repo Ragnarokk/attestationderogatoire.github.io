@@ -34,12 +34,16 @@ var debug = new Vue({
                     id: 7, name: 'zipcode', text: 'Code Postal',        
                     type: 'text', placeholder: '75001', value: "", pattern: /[0-9]{5}/
                 },
+                hikingdate: {
+                    id: 8, name: 'hikingdate', text: 'Heure de Sortie', type: 'time',
+                    value: currenttime, pattern: /[0-9]{2}:[0-9]{2}/
+                },
                 creationdate: {
-                    id: 8, name: 'creationdate', text: 'Créé le', type: 'date',
+                    id: 9, name: 'creationdate', text: 'Créé le', type: 'date',
                     value: currentdate, pattern: /[0-9]{4}(-[0-9]{2}){2}/
                 },
                 creationhour: {
-                    id: 9, name: 'creationhour', text: 'A', type: 'time',
+                    id: 10, name: 'creationhour', text: 'A', type: 'time',
                     value: currenttime, pattern: /[0-9]{2}:[0-9]{2}/
                 }
             },
