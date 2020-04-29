@@ -1,3 +1,13 @@
+const check_coordinates = {
+    'travail':      [106, 436],
+    'courses':      [106, 506],
+    'sante':        [106, 562],
+    'famille':      [106, 613],
+    'sport':        [106, 690],
+    'judiciaire':   [106, 755],
+    'missions':     [106, 808]
+}
+
 function completeAndDownloadForm( data ) {
     console.log(data);
     let qrstring = 'Cree le: ' + data.creationdate + ' a ' + data.creationhour + '; ' +
@@ -32,6 +42,7 @@ function completeAndDownloadForm( data ) {
         }).toImage("png");
 
         ctx.drawImage(img, 0, 0);
+        // font for simple fields
         ctx.font = "17px ArialMT";
         ctx.fillText(data.name + ' ' + data.lastname, 175, 217);
         ctx.fillText(data.birthdate, 175, 251);
@@ -40,6 +51,14 @@ function completeAndDownloadForm( data ) {
         ctx.fillText(data.city, 152, 857);
         ctx.fillText(data.creationdate, 130, 891);
         ctx.fillText(data.hikinghour, 282, 891);
+
+        // font for the crossed cases
+        ctx.font = "bold 18px Arial";
+        for ( coord in check_coordinates ) {
+            if ( data.checkset.has(coord) ) {
+                ctx.fillText('X', check_coordinates[coord][0], check_coordinates[coord][1]);
+            }
+        }
 
         qrimage.onload = function () {
             ctx.drawImage(qrimage, 591, 817, 135, 135);
