@@ -21,7 +21,7 @@
                         Veuillez saisir les champs correctement !
                     </p>
                     <input-group 
-                        v-for="input in inputs"
+                        v-for="input in firstInputs"
                         v-bind:inputdata="input"
                         v-bind:key="input.id"
                         :ref="input.name"
@@ -33,6 +33,13 @@
                         v-bind:key="check.id"
                         v-bind:checkset="checkboxesset"
                     ></checkbox-group>
+
+                    <input-group 
+                        v-for="input in lastInputs"
+                        v-bind:inputdata="input"
+                        v-bind:key="input.id"
+                        :ref="input.name"
+                    ></input-group>
 
                     <button id="submit-button" @click="createPDF" class="btn btn-primary btn-lg btn-block">Génerer l'attestation</button>
                 </form>
