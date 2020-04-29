@@ -4,6 +4,7 @@ var debug = new Vue({
         const date = new Date();
         const currentdate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
         const currenttime = ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+        const checkset = new Set();
         return {
             inputs: {
                 name: { 
@@ -45,8 +46,44 @@ var debug = new Vue({
                 creationhour: {
                     id: 10, name: 'creationhour', text: 'A', type: 'time',
                     value: currenttime, pattern: /[0-9]{2}:[0-9]{2}/
-                }
+                },
             },
+            checkboxes: [
+                {
+                    id: 11, name: 'travail', 
+                    text: "Déplacements entre le domicile et le lieu d’exercice de l’activité " +
+                          "professionnelle, lorsqu'ils sont indispensables à l'exercice d’activités " +
+                          "ne pouvant être organisées sous forme de télétravail ou déplacements professionnels" +
+                          " ne pouvant être différés."
+                },{
+                    id: 12, name: 'courses',
+                    text: "Déplacements pour effectuer des achats de fournitures nécessaires à l’activité professionnelle " +
+                          "et des achats de première nécessité dans des établissements dont les activités demeurent autorisées " +
+                          "(liste des commerces et établissements qui restent ouverts)."
+                },{
+                    id: 13, name: 'sante',
+                    text: "Consultations et soins ne pouvant être assurés à distance et ne pouvant être " +
+                          "différés ; consultations et soins des patients atteints d'une affection de longue durée."
+                },{
+                    id: 14, name: 'famille',
+                    text: "Déplacements pour motif familial impérieux, pour l’assistance aux personnes " +
+                    "vulnérables ou la garde d’enfants."
+                },{
+                    id: 15, name: 'sport',
+                    text: "Déplacements brefs, dans la limite d'une heure quotidienne et dans un rayon maximal " +
+                          "d'un kilomètre autour du domicile, liés soit à l'activité physique individuelle des " +
+                          "personnes, à l'exclusion de toute pratique sportive collective et de toute proximité " +
+                          "avec d'autres personnes, soit à la promenade avec les seules personnes regroupées dans " +
+                          "un même domicile, soit aux besoins des animaux de compagnie."
+                },{
+                    id: 16, name: 'judiciaire',
+                    text: "Convocation judiciaire ou administrative."
+                },{
+                    id: 17, name: 'missions',
+                    text: "Participation à des missions d’intérêt général sur demande de l’autorité administrative."
+                }
+            ],
+            checkboxesset: checkset,
             errors: false,
         }
     },
@@ -107,6 +144,28 @@ var debug = new Vue({
                         this.valid = 0;
                     }
                 },
+            }
+        },
+        'checkbox-group': {
+            props: ['checkdata',
+                    'checkset'],
+            template: '<div class="form-check">' +
+                      '    <input type="checkbox" class="form-check-input" ' + 
+                                  'ref="box"' +
+                                  ':id="checkdata.name"' +
+                                  ':name="checkdata.name"' + 
+                                  ':value="checkdata.name"' +
+                                  'v-on:change="update">' +
+                      '    <label class="form-check-label" :for="checkdata.name">{{ checkdata.text }}</label>' +
+                      '</div>',
+            methods: {
+                update: function () {
+                    if ( this.$refs.box.checked ) {
+                        this.checkset.add( this.checkdata.name );
+                    } else {
+                        this.checkset.delete( this.checkdata.name );
+                    }
+                }
             }
         }
 

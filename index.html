@@ -27,6 +27,13 @@
                         :ref="input.name"
                     ></input-group>
 
+                    <checkbox-group
+                        v-for="check in checkboxes"
+                        v-bind:checkdata="check"
+                        v-bind:key="check.id"
+                        v-bind:checkset="checkboxesset"
+                    ></checkbox-group>
+
                     <button id="submit-button" @click="createPDF" class="btn btn-primary btn-lg btn-block">Génerer l'attestation</button>
                 </form>
 
