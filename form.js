@@ -60,6 +60,11 @@ function completeAndDownloadForm( data ) {
             }
         }
 
+        // font for the creation date
+        ctx.font = "12px ArialMT";
+        ctx.fillText('Date de création:', 644, 962);
+        ctx.fillText(data.creationdate + ' à ' + data.creationhour, 632, 974);
+
         qrimage.onload = function () {
             ctx.drawImage(qrimage, 591, 817, 135, 135);
 
