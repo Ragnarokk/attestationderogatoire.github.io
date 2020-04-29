@@ -19,9 +19,11 @@ function completeAndDownloadForm( data ) {
         }).toImage("png");
 
         ctx.drawImage(img, 0, 0);
-        ctx.font = "16px Arial";
-        ctx.fillText(data.name + ' ' + data.lastname, 166, 218);
-        ctx.fillText(data.birthdate, 164, 252);
+        ctx.font = "bold 15px sans-serif";
+        ctx.fillText(data.name + ' ' + data.lastname, 175, 218);
+        ctx.fillText(data.birthdate, 175, 252);
+        ctx.fillText(data.birthplace, 128, 285);
+        ctx.fillText(data.address, 189, 320);
 
         qrimage.onload = function () {
             ctx.drawImage(qrimage, 400, 400);

@@ -1,6 +1,18 @@
 var debug = new Vue({
     el: '#attestation-form',
     data () {
+        let data = {};
+        if ( localStorage.getItem('previous-data') ) {
+            data = JSON.parse(localStorage.getItem('previous-data'));
+        } else {
+            data.name = '';
+            data.lastname = '';
+            data.birthdate = '2020-01-01';
+            data.birthplace = '';
+            data.address = '';
+            data.city = '';
+            data.zipcode = '';
+        }
         const date = new Date();
         const currentdate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
         const currenttime = ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
@@ -8,32 +20,32 @@ var debug = new Vue({
         return {
             inputs: [
                 { 
-                    id: 1, name: 'name', text: 'Prénom',             
+                    id: 1, name: 'name', text: 'Prénom', value: data.name,            
                     type: 'text', placeholder: 'Jean', pattern: /\w+/
                 },
                 {
                     id: 2, name: 'lastname', text: 'Nom',                
-                    type: 'text', placeholder: 'Dupont', value: "", pattern: /\w+/
+                    type: 'text', placeholder: 'Dupont', value: data.lastname, pattern: /\w+/
                 },
                 { 
                     id: 3, name: 'birthdate', text: 'Date de Naissance',  
-                    type: 'date', value: '2020-01-01', pattern: /[0-9]{4}(-[0-9]{2}){2}/
+                    type: 'date', value: data.birthdate, pattern: /[0-9]{4}(-[0-9]{2}){2}/
                 },
                 { 
                     id: 4, name: 'birthplace', text: 'Lieu de Naissance',  
-                    type: 'text', placeholder: 'Lyon', value: "", pattern: /\w+/
+                    type: 'text', placeholder: 'Lyon', value: data.birthplace, pattern: /\w+/
                 },
                 { 
                     id: 5, name: 'address', text: 'Adresse',            
-                    type: 'text', placeholder: '36 quai des Orfèvres', value: "", pattern: /\w+/
+                    type: 'text', placeholder: '36 quai des Orfèvres', value: data.address, pattern: /\w+/
                 },
                 { 
                     id: 6, name: 'city', text: 'Ville',              
-                    type: 'text', placeholder: 'Paris', value: "", pattern: /\w+/
+                    type: 'text', placeholder: 'Paris', value: data.city, pattern: /\w+/
                 },
                 { 
                     id: 7, name: 'zipcode', text: 'Code Postal',        
-                    type: 'text', placeholder: '75001', value: "", pattern: /[0-9]{5}/
+                    type: 'text', placeholder: '75001', value: data.zipcode, pattern: /[0-9]{5}/
                 },
                 {
                     id: 8, name: 'hikingdate', text: 'Heure de Sortie', type: 'time',
@@ -87,6 +99,8 @@ var debug = new Vue({
             errors: false,
         }
     },
+    mounted() {
+    },
     computed: {
         firstInputs: function() {
             return this.inputs.filter(input => input.id < 8)
@@ -116,6 +130,11 @@ var debug = new Vue({
                     const key = input.name;
                     data[key] = this.$refs[key][0].value;
                 }
+                const parsed = JSON.stringify(data);
+                console.log(parsed);
+                localStorage.setItem('previous-data', parsed);
+
+                data['checkset'] = this.checkboxesset;
                 completeAndDownloadForm( data );
             }
         }
