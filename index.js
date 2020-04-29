@@ -82,17 +82,6 @@ var debug = new Vue({
                                 'v-model="value"' +
                                 'v-on:blur="validate"' +
                     '></div>',
-            // mounted() {
-            //     const input = this.$refs.input;
-            //     input.addEventListener("keypress", function (e) {
-            //         if ( e.code === 'Enter' ) {
-            //             const nextGroup = input.parentElement.nextElementSibling;
-            //             if ( nextGroup != null ) {
-            //                 nextGroup.getElementsByTagName('input')[0].focus();
-            //             }
-            //         }
-            //     })
-            // },
             methods: {
                 validate: function () {
                     const input = this.$refs.input;
