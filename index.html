@@ -16,45 +16,21 @@
                 du gouvernement mais de façon totalement transparente et hors ligne
             </p>
             <div class="container">
-                <form id="attestation-form">
-                    <div class="form-group">
-                        <label for="name">Prénom</label>
-                        <input class="form-control form-control-lg is-valid" v-model="name" type="text" name="name" placeholder="Jean" lazy>
-                    </div>
+                <form id="attestation-form" v-on:submit.prevent>
+                    <p v-if="errors" class="alert alert-danger">
+                        Veuillez saisir les champs correctement !
+                    </p>
+                    <input-group 
+                        v-for="input in inputs"
+                        v-bind:inputdata="input"
+                        v-bind:key="input.id"
+                        :ref="input.name"
+                    ></input-group>
 
-                    <div class="form-group">
-                        <label for="lastname">Nom</label>
-                        <input class="form-control form-control-lg" v-model="lastname" type="text" name="lastname" placeholder="Dupont" lazy>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="birthdate">Date de Naissance</label>
-                        <input class="form-control form-control-lg" v-model="birthdate" type="date" name="birthdate" lazy>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="birthplace">Lieu de Naissance</label>
-                        <input class="form-control form-control-lg" v-model="birthplace" type="text" name="birthplace" placeholder="Lyon" lazy>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="address">Adresse</label>
-                        <input class="form-control form-control-lg" v-model="address" type="text" name="address" placeholder="36 quai des Orfèvres" lazy>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="city">Ville</label>
-                        <input class="form-control form-control-lg" v-model="city" type="text" name="city" placeholder="Paris" lazy>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="zipcode">Code Postal</label>
-                        <input class="form-control form-control-lg" v-model="zipcode" type="text" name="zipcode" placeholder="75001" pattern="^[0-9]{5}$">
-                    </div>
-
+                    <button id="submit-button" @click="createPDF" class="btn btn-primary btn-lg btn-block">Génerer l'attestation</button>
                 </form>
 
-                <script src="index.js"></script>
+                <script src='index.js'></script>
             </div>
         </div>
     </body>
