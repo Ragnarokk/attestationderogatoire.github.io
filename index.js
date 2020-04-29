@@ -7,15 +7,15 @@ var debug = new Vue({
         } else {
             data.name = '';
             data.lastname = '';
-            data.birthdate = '2020-01-01';
+            data.birthdate = '01/01/2020';
             data.birthplace = '';
             data.address = '';
             data.city = '';
             data.zipcode = '';
         }
         const date = new Date();
-        const currentdate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
-        const currenttime = ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+        const currentdate =  ('0' + (date.getDate() + 1)).slice(-2) + '/' + ('0' + date.getMonth()).slice(-2) + '/' + date.getFullYear();
+        const currenttime = ('0' + date.getHours()).slice(-2) + 'h' + ('0' + date.getMinutes()).slice(-2);
         const checkset = new Set();
         return {
             inputs: [
@@ -28,8 +28,8 @@ var debug = new Vue({
                     type: 'text', placeholder: 'Dupont', value: data.lastname, pattern: /\w+/
                 },
                 { 
-                    id: 3, name: 'birthdate', text: 'Date de Naissance',  
-                    type: 'date', value: data.birthdate, pattern: /[0-9]{4}(-[0-9]{2}){2}/
+                    id: 3, name: 'birthdate', text: 'Date de Naissance (jj/mm/aaaa)',  
+                    type: 'text', value: data.birthdate, pattern: /([0-9]{2}\/){2}[0-9]{4}/
                 },
                 { 
                     id: 4, name: 'birthplace', text: 'Lieu de Naissance',  
@@ -48,16 +48,16 @@ var debug = new Vue({
                     type: 'text', placeholder: '75001', value: data.zipcode, pattern: /[0-9]{5}/
                 },
                 {
-                    id: 8, name: 'hikingdate', text: 'Heure de Sortie', type: 'time',
-                    value: currenttime, pattern: /[0-9]{2}:[0-9]{2}/
+                    id: 8, name: 'hikinghour', text: 'Heure de Sortie', type: 'text',
+                    value: currenttime, pattern: /[0-9]{2}h[0-9]{2}/
                 },
                 {
-                    id: 9, name: 'creationdate', text: 'Créé le', type: 'date',
-                    value: currentdate, pattern: /[0-9]{4}(-[0-9]{2}){2}/
+                    id: 9, name: 'creationdate', text: 'Créé le', type: 'text',
+                    value: currentdate, pattern: /([0-9]{2}\/){2}[0-9]{4}/
                 },
                 {
-                    id: 10, name: 'creationhour', text: 'A', type: 'time',
-                    value: currenttime, pattern: /[0-9]{2}:[0-9]{2}/
+                    id: 10, name: 'creationhour', text: 'A', type: 'text',
+                    value: currenttime, pattern: /[0-9]{2}h[0-9]{2}/
                 },
             ],
             checkboxes: [
