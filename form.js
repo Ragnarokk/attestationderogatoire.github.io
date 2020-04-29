@@ -21,6 +21,7 @@ function completeAndDownloadForm( data ) {
         ctx.drawImage(img, 0, 0);
         ctx.font = "16px Arial";
         ctx.fillText(data.name + ' ' + data.lastname, 166, 218);
+        ctx.fillText(data.birthdate, 164, 252);
 
         qrimage.onload = function () {
             ctx.drawImage(qrimage, 400, 400);
